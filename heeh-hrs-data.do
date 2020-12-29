@@ -1,4 +1,4 @@
-*** Project: education expansion and health
+*** Project: education expansion and health in US
 *** Author: S Bauldry (based on R Frase)
 *** Date: Dec 29, 2020
 
