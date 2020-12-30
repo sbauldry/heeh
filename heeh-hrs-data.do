@@ -131,22 +131,19 @@ lab var ba "college degree or higher"
 rename radyear dyr
 
 gen srh = r1shlt
-gen psy = r1psyche
 gen adl = .
 forval i = 2/13 {
   replace srh = 6 - r`i'shlt if !mi(r`i'shlt) & mi(srh)
-  replace psy = r`i'psyche if !mi(r`i'psyche) & mi(psy)
   replace adl = r`i'adla if !mi(r`i'adla) & mi(adl)
 }
 
 gen dsrh = (srh >= 4) if !mi(srh)
-gen dadl = (adl > 0) if !mi(adl)
+gen dadl = (adl == 0) if !mi(adl)
 
 lab var srh "self-reported health at first available wave"
 lab var dsrh "self-reported health 4+ at first available wave"
-lab var psy "ever psych problems at first available wave"
-lab var adl "ADL at first available wave"
-lab var dadl "any ADL at first available wave"
+lab var adl "ADL count at first available wave"
+lab var dadl "no ADL at first available wave"
 
 * demographic and other variables
 rename racohbyr hrsc 
@@ -271,7 +268,7 @@ lab var csmk "childhood smoked"
 
 *** Keeping analysis variables
 *** Note: set based on preliminary analyses building BA models
-order smp coh ba srh dsrh psy adl dadl age rce fem fbr crur sib clvg vet med ///
+order smp coh ba srh dsrh adl dadl age rce fem fbr crur sib clvg vet med ///
   fed cses cump mwrk csrh msch csmk psmk
 keep smp-psmk
   
@@ -279,7 +276,7 @@ keep smp-psmk
 keep if !mi(coh)
 dis _N
 keep if !mi(ba)
-keep if !mi(srh, psy, adl)
+keep if !mi(srh, adl)
 keep if !mi(rce)
 
 * checking distribution of missing data
@@ -292,7 +289,7 @@ recode vet med fed rce (.r .d .m = .)
 mi set wide
 mi reg imp rce crur sib clvg vet med fed cses cump mwrk csrh msch csmk psmk
 mi impute chain (ologit) csrh cses mwrk (logit) crur clvg vet cump msch psmk ///
-  csmk (reg) med fed sib = age fem i.rce fbr ba srh dsrh psy adl dadl i.smp, ///
+  csmk (reg) med fed sib = age fem i.rce fbr ba srh dsrh adl dadl i.smp, ///
   by(coh) add(5) aug force dots rseed(135711) 
 
 save ~/desktop/heeh-hrs-data-mi, replace
