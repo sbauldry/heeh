@@ -172,13 +172,13 @@ graph twoway (scatter vr es, mc(black)) (rspike ub lb vr, hor lc(black) lw(thick
   if id == 1, scheme(s1color) ylab(6 "CE" 5 "AE" 4 "post" 3 "CE x post" ///
   2 "AE x post" 1 "CE vs AE", angle(h) grid gstyle(dot)) ytit("")       ///
   xtit("estimate") xlab(-0.4(0.2)0.4, grid gstyle(dot)) xline(0,        ///
-  lc(black) lp(dash)) legend(off) tit("No ADL") saving(`g1')
+  lc(black) lp(dash)) legend(off) tit("No ADL Limitation") saving(`g1')
   
 graph twoway (scatter vr es, mc(black)) (rspike ub lb vr, hor lc(black) lw(thick)) ///
   if id == 2, scheme(s1color) ylab(6 "CE" 5 "AE" 4 "post" 3 "CE x post" ///
   2 "AE x post" 1 "CE vs AE", angle(h) grid gstyle(dot)) ytit("")       ///
   xtit("estimate") xlab(-0.4(0.2)0.4, grid gstyle(dot)) xline(0,        ///
-  lc(black) lp(dash)) legend(off) tit("VG/E SRH") saving(`g2')
+  lc(black) lp(dash)) legend(off) tit("Very Good/Excellent SRH") saving(`g2')
   
 graph combine "`g1'" "`g2'", scheme(s1color)
 graph export ~/desktop/heeh-figX2.pdf, replace 
