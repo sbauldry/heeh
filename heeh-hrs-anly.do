@@ -131,11 +131,11 @@ format p %5.2f
 tempfile g1 g2
 graph bar p if coh == 1, over(grp) scheme(s1color) ylab(0(0.2)1, angle(h) grid       ///
   gstyle(dot)) ytit("proportion respondents") blabel(total, format(%5.2g)) ///
-  tit("pre-expansion") saving(`g1', replace)
+  tit("Pre-Expansion") saving(`g1', replace)
   
 graph bar p if coh == 2, over(grp) scheme(s1color) ylab(0(0.2)1, angle(h) grid       ///
   gstyle(dot)) ytit("proportion respondents") blabel(total, format(%5.2g)) ///
-  tit("post-expansion") saving(`g2', replace)
+  tit("Post-Expansion") saving(`g2', replace)
   
 graph combine "`g1'" "`g2'", scheme(s1color) rows(1)
 graph export ~/desktop/heeh-figX1.pdf, replace
